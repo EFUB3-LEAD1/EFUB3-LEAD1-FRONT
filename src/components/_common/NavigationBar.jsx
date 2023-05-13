@@ -13,7 +13,7 @@ const NavigationBar = () => {
         <BiMenu size='38' />
         <div className='text'>메뉴</div>
       </BtnRect>
-      <BtnRect onClick={() => nav('/searck')}>
+      <BtnRect onClick={() => nav('/search')}>
         <FiSearch size='30' style={{ marginTop: '3px' }} />
         <div className='text'>검색</div>
       </BtnRect>
