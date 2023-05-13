@@ -1,16 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-
-import NavigationBar from '../components/_common/NavigationBar';
+import Main from '../components/mainpage/Main';
 
 const MainPage = () => {
-  return (
-    <Wrapper>
-      <NavigationBar />
-    </Wrapper>
-  );
+    return <Main />;
 };
 
 export default MainPage;
-
-const Wrapper = styled.div``;

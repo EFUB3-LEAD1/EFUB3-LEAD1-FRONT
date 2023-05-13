@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BookmarkPage = () => {
-  return <></>;
+    return <></>;
 };
 
 export default BookmarkPage;
