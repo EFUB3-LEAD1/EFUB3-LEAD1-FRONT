@@ -46,6 +46,7 @@ const Wrapper = styled.div`
     align-items: center;
     padding-bottom: 15px;
     box-shadow: 0px -1px 5px rgba(150, 150, 150, 0.2);
+    background-color: white;
 `;
 const BtnRect = styled.div`
     width: 25%;
