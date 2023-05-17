@@ -27,6 +27,7 @@ S.TopBar = styled.div`
     }
     box-shadow: 0px -1px 5px rgba(150, 150, 150, 0.2);
     background-color: white;
+    z-index: 1;
 `;
 S.Title = styled.div`
     margin-left: 10px;
