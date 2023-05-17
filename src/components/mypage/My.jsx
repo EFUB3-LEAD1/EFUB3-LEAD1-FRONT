@@ -78,6 +78,7 @@ const My = () => {
                     </div>
                 </div>
             </M.BottomDiv>
+            <NavigationBar />
         </M.Wrapper>
     );
 };

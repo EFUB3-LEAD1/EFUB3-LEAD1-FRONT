@@ -83,7 +83,7 @@ M.BottomDiv = styled.div`
     padding: 10px 20px 20px 20px;
     display: flex;
     flex-direction: column;
-    margin: 10px 0 30px 0;
+    margin: 10px 0 110px 0;
     .subtitle {
         color: dimgray;
         font-size: 1rem;
