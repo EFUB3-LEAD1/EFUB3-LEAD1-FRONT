@@ -18,8 +18,10 @@ const PackageItem = ({
     const dealImage = [this_week, best_item, early_sold];
     return (
         <S.Wrapper>
-            <S.Thumbnail src={thumb}></S.Thumbnail>
-            <S.Deal src={dealImage[deal]} />
+            <S.ImageContainer>
+                <S.Thumbnail src={thumb}></S.Thumbnail>
+                <S.Deal src={dealImage[deal]} />
+            </S.ImageContainer>
             <S.Info>
                 <S.Title>{title}</S.Title>
                 <S.HashTag>{hashtag}</S.HashTag>

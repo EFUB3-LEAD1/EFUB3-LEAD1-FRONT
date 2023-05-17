@@ -5,6 +5,9 @@ S.Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
+S.ImageContainer = styled.div`
+    position: relative;
+`;
 S.Thumbnail = styled.img`
     margin-left: 7.5%;
     margin-bottom: 5%;
@@ -12,9 +15,9 @@ S.Thumbnail = styled.img`
 `;
 S.Deal = styled.img`
     position: absolute;
-    margin-top: 4%;
-    margin-left: 35%;
-    width: 10%;
+    top: 10%;
+    right: 15%;
+    width: 15%;
 `;
 S.Info = styled.div`
     margin-left: 5%;
