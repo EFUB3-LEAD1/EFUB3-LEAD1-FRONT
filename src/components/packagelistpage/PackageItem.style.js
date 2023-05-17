@@ -15,13 +15,12 @@ S.Thumbnail = styled.img`
 `;
 S.Deal = styled.img`
     position: absolute;
-    top: 10%;
+    top: 12%;
     right: 15%;
     width: 15%;
 `;
 S.Info = styled.div`
-    margin-left: 5%;
-    margin-bottom: 10%;
+    margin: 0% 5% 10% 5%;
 `;
 S.Title = styled.div`
     color: black;

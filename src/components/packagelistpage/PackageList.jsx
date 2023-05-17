@@ -14,7 +14,8 @@ const PackageList = () => {
             id: 1,
             thumbnail: { thumbnail },
             title: '서유럽 4국 10일',
-            hashtag: '#시내호텔 2박 # 융프라우요흐 # 에펠탑 전망대',
+            hashtag:
+                '#시내호텔 2박 # 융프라우요흐 # 에펠탑 전망대 # 세느강유람선 # 베네치아 대운하투어 # 런던',
             explanation: '단 일주일간 40만원 할인',
             price: '4,499,000 원 ~',
             originalPrice: '4,899,000원',
