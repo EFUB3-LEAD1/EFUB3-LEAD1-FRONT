@@ -39,12 +39,12 @@ const Wrapper = styled.div`
     @media (min-width: 576px) {
         width: 390px;
     }
-    height: 85px;
+    height: 75px;
 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     box-shadow: 0px -1px 5px rgba(150, 150, 150, 0.2);
     background-color: var(--white);
 `;
