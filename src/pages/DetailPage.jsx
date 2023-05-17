@@ -31,6 +31,12 @@ const DetailPage = () => {
         },
     ];
     return <Detail info={info[id - 1]} />;
+/*
+import Detail from '../components/detailpage/Detail';
+
+const DetailPage = () => {
+    return <Detail />;
+*/
 };
 
 export default DetailPage;
