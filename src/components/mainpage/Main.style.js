@@ -4,7 +4,7 @@ const S = {};
 S.Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding-bottom: 130px;
+    padding-bottom: 110px;
 `;
 S.SplashContainer = styled.div`
     width: 100vw;
