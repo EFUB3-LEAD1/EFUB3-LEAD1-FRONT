@@ -1,7 +1,8 @@
 import React from 'react';
+import PackageList from '../components/packagelistpage/PackageList';
 
 const PackageListPage = () => {
-    return <></>;
+    return <PackageList />;
 };
 
 export default PackageListPage;
