@@ -131,6 +131,9 @@ S.Sale = styled.img`
     position: absolute;
     margin-bottom: 35px;
     margin-left: 60px;
+    @media (min-width: 576px) {
+        width: 28px;
+    }
 `;
 S.MenuDiv = styled.div`
     background-color: var(--purple3);
