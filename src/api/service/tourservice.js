@@ -6,7 +6,7 @@ const TourService = {
     // 패키지 상세 조회
     getPackage: tourId => http.get(`/tours/${tourId}`),
     // 패키지 검색
-    searchPackages: keyword => http.get(`/tours?keyword=${keyword}`),
+    searchPackages: keyword => http.get(`/tours/find?keyword=${keyword}`),
     // 여행지 목록 조회
     getSpots: () => http.get('/spots'),
 };
