@@ -1,4 +1,4 @@
-export const GetPackage = {
+export const getpackage = {
     data: {
         tourId: 1,
         title: '서유럽 4국 10일',
