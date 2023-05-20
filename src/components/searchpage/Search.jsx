@@ -10,6 +10,11 @@ const Search = () => {
     const nav = useNavigate();
     const [view, setView] = useState(false);
     const [view2, setView2] = useState(true);
+
+    const [userInput, setUserInput] = useState('');
+    const saveInput = e => {
+        setUserInput(e.target.value);
+    };
     return (
         <S.Wrapper>
             <S.TopBar>
@@ -19,8 +24,17 @@ const Search = () => {
                 <S.Title>여행지 검색</S.Title>
             </S.TopBar>
             <S.SearchContainer>
-                <S.SearchInput placeholder='국가 또는 도시명을 검색' />
-                <img src={search} />
+                <S.SearchInput
+                    placeholder='국가명으로 검색'
+                    value={userInput}
+                    onChange={saveInput}
+                />
+                <img
+                    src={search}
+                    onClick={() =>
+                        nav('/search/result', { state: { value: userInput } })
+                    }
+                />
             </S.SearchContainer>
             <S.Container>
                 <S.MiniTitle>주요지역</S.MiniTitle>

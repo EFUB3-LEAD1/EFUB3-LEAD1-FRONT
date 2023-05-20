@@ -68,7 +68,7 @@ S.Dropdown = styled.div`
     width: 100%;
     height: 60px;
     margin: 5px 0px;
-    background-color: #f5f5f5;
+    background-color: var(--gray2);
     border-radius: 10px;
     display: flex;
     align-items: center;
