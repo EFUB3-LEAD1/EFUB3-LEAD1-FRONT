@@ -41,7 +41,7 @@ const Detail = () => {
     const ToggleLike = () => {
         if (isLogin) {
             if (isLiked) {
-                UnLike(Number(id))
+                UnLike(id)
                     .then(res => {
                         console.log(res);
                         setIsLiked(false);

@@ -24,8 +24,8 @@ const Login = () => {
                     console.log(res);
                     localStorage.setItem('token', res.accessToken);
                     // localStorage.setItem('refreshToken', res.refreshToken);
-                    //nav('/mypage');
-                    //window.location.reload();
+                    nav('/mypage');
+                    window.location.reload();
                 })
                 .catch(err => console.log(err));
         } else {
