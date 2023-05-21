@@ -9,13 +9,11 @@ const UserService = {
             password: pw,
         }),
     // 로그아웃
-    requestLogout: () => {
+    requestLogout: (token, refreshToken) =>
         axios.delete(`${process.env.REACT_APP_API_URL}/auth/logout`, {
-            account: id,
-            password: pw,
-        });
-        window.localStorage.removeItem('token');
-    },
+            accessToken: token,
+            refreshToken: refreshToken,
+        }),
     // 프로필 조회
     requestProfile: token =>
         axios.get(`${process.env.REACT_APP_API_URL}/members/me`, {

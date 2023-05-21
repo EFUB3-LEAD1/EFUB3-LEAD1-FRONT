@@ -6,9 +6,29 @@ import { M } from './My.style';
 import { BiArrowBack } from 'react-icons/bi';
 import { BsChevronRight } from 'react-icons/bs';
 
+import { RequestLogout, GetProfile } from '../../api/user';
+
 const My = () => {
     const nav = useNavigate();
-    const nickname = '김하나';
+    const token = localStorage.getItem('token');
+    // const refreshToken = localStorage.getItem('refreshToken');
+    const [account, setAccount] = useState('x abc@gmail.com');
+    const OnLogout = () => {
+        window.localStorage.removeItem('token');
+        // window.localStorage.removeItem('refreshToken');
+        nav('/login');
+        // RequestLogout(token, refreshToken)
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err));
+    };
+    useEffect(() => {
+        GetProfile()
+            .then(res => {
+                console.log(res);
+                setAccount(res.account);
+            })
+            .catch(err => console.log(err));
+    }, []);
     return (
         <M.Wrapper>
             <M.TopBar>
@@ -16,9 +36,10 @@ const My = () => {
             </M.TopBar>
             <M.Profile></M.Profile>
             <M.Name>
-                {nickname}
+                {account}
                 <BsChevronRight size='20' color='var(--gray)' strokeWidth='1' />
             </M.Name>
+            <M.Logout onClick={() => OnLogout()}>로그아웃</M.Logout>
             <M.GrayDiv>
                 여행 스타일 테스트 해보실래요?
                 <BsChevronRight size='15' color='var(--gray)' />

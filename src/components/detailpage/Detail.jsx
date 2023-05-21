@@ -19,6 +19,7 @@ import guidefalse from '../../assets/detailpage/guidefalse.svg';
 
 import { getpackage } from '../../api/_mock';
 import { GetPackage } from '../../api/tour';
+import { Like, UnLike } from '../../api/user';
 
 const Detail = () => {
     const nav = useNavigate();
@@ -26,19 +27,36 @@ const Detail = () => {
     const num = Math.floor(Math.random() * 500);
     const [currentPackage, setCurrentPackage] = useState({});
     useEffect(() => {
-        // GetPackage(id)
-        //     .then(res => {
-        //         console.log(res);
-        //         setCurrentPackage(res);
-        //     })
-        //     .catch(err => console.log(err));
-        setCurrentPackage(getpackage.data);
+        GetPackage(id)
+            .then(res => {
+                console.log(res);
+                setCurrentPackage(res);
+                setIsLiked(res.isHeart);
+            })
+            .catch(err => console.log(err));
     }, []);
+    const token = localStorage.getItem('token');
+    const [isLogin, setIsLogin] = useState(!!token);
     const [isLiked, setIsLiked] = useState(false);
     const ToggleLike = () => {
-        if (isLiked) setIsLiked(false);
-        else setIsLiked(true);
-        console.log(isLiked);
+        if (isLogin) {
+            if (isLiked) {
+                UnLike(Number(id))
+                    .then(res => {
+                        console.log(res);
+                        setIsLiked(false);
+                    })
+                    .catch(err => console.log(err));
+            } else {
+                Like(id)
+                    .then(res => {
+                        console.log(res);
+                        setIsLiked(true);
+                    })
+                    .catch(err => console.log(err));
+            }
+            console.log(isLiked);
+        } else alert('로그인 후 찜 기능을 사용할 수 있습니다.');
     };
     return (
         <D.Wrapper>
@@ -67,7 +85,9 @@ const Detail = () => {
                 </D.DetailContainer>
                 <D.Title>{currentPackage.title}</D.Title>
                 <D.HashTag>{currentPackage.subTitle}</D.HashTag>
-                <D.Explanation>금주 핫딜</D.Explanation>
+                <D.Explanation>
+                    {currentPackage.category === 'HOT_DEAL' && '금주 핫딜'}
+                </D.Explanation>
                 <D.FlexContainer>
                     <span onClick={() => ToggleLike()}>
                         <FiHeart
@@ -85,7 +105,7 @@ const Detail = () => {
                 {currentPackage.tourSpot && (
                     <D.Nation>
                         <span className='nation'>
-                            {currentPackage.tourSpot.nation}:
+                            {currentPackage.tourSpot[0].nation}:
                         </span>
                         &nbsp; <span className='blue'>여행 가능</span>
                         &nbsp;여행 전 입국 규정을 확인해 주세요
@@ -95,7 +115,9 @@ const Detail = () => {
                     <D.IconRect>
                         <img src={calendar} className='img1' />
                         {currentPackage.tourPlan && (
-                            <div className='text'>{`${currentPackage.tourPlan.days}박 ${currentPackage.tourPlan.nights}일`}</div>
+                            <div className='text'>
+                                {currentPackage.tourPlan.duration}
+                            </div>
                         )}
                     </D.IconRect>
                     <D.IconRect>
