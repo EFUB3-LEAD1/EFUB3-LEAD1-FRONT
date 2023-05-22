@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { SearchPackages } from '../../api/tour';
 import { S } from './SearchResult.style';
 import NavigationBar from '../_common/NavigationBar';
 import SearchItem from './SearchItem';
@@ -15,7 +16,17 @@ const SearchResult = () => {
     const nav = useNavigate();
     const location = useLocation();
     const userInput = location.state.value;
-    const total_num = 0;
+    const [searchResult, setSearchResult] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        SearchPackages(userInput)
+            .then(res => {
+                setSearchResult(res.tours);
+                console.log(searchResult);
+                setIsLoading(false);
+            })
+            .catch(err => console.log(err));
+    }, []);
     return (
         <S.Wrapper>
             <S.TopBar>
@@ -51,9 +62,25 @@ const SearchResult = () => {
             </S.Container>
             <S.Line height='7px' />
             <S.Container>
-                <S.Total>총 {total_num}개</S.Total>
+                <S.Total>총 {searchResult.length}개</S.Total>
             </S.Container>
-            {total_num !== 0 ? <SearchItem /> : <NoResult />}
+            {searchResult.length !== 0 ? (
+                !isLoading &&
+                searchResult.map(item => {
+                    return (
+                        <SearchItem
+                            key={item.tourId}
+                            id={item.tourId}
+                            title={item.title}
+                            subTitle={item.subTitle}
+                            price={item.price}
+                            duration={item.tourPlan.duration}
+                        />
+                    );
+                })
+            ) : (
+                <NoResult />
+            )}
             <NavigationBar />
         </S.Wrapper>
     );

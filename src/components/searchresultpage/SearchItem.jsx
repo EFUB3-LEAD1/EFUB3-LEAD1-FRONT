@@ -1,25 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import calendar from '../../assets/searchresultpage/calendar_2.svg';
 import hotel from '../../assets/searchresultpage/hotel.svg';
 
-const SearchItem = () => {
+const SearchItem = ({ key, id, title, subTitle, price, duration }) => {
+    const nav = useNavigate();
     return (
-        <Wrapper>
+        <Wrapper onClick={() => nav(`/whole-package/detail/${id}`)}>
             <Badge>전체 패키지</Badge>
-            <Title>서유럽 4국 10일</Title>
-            <HashTag>
-                #시내호텔 2박 #융프라우요흐 #에펠탑 전망대 #세느강유람선
-                #베네치아 대운하투어 #런던
-            </HashTag>
+            <Title>{title}</Title>
+            <HashTag>{subTitle}</HashTag>
             <Container>
                 <img src={calendar} />
-                <Text>10일</Text>
+                <Text>{duration}</Text>
                 <img src={hotel} />
                 <Text>3/4성급</Text>
             </Container>
             <Price>
-                <span className='people'>1인 </span>4,499,000 원~
+                <span className='people'>1인 </span>
+                {price} 원~
             </Price>
             <Line />
         </Wrapper>
@@ -82,4 +82,5 @@ const Line = styled.div`
     width: 100%;
     height: 1.5px;
     margin-top: 6%;
+    margin-bottom: 6%;
 `;
