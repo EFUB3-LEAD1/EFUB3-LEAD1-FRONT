@@ -1,37 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router';
 import calendar from '../../assets/searchresultpage/calendar_2.svg';
 import hotel from '../../assets/searchresultpage/hotel.svg';
 import del from '../../assets/bookmarkpage/delete.svg';
 
-const BookmarkItem = props => {
+const BookmarkItem = ({ key, id, title, subTitle, price, duration }) => {
+    const nav = useNavigate();
     return (
-        <Wrapper>
-            <Container margin='5% 0%'>
-                <BlackBadge>패키지/호텔</BlackBadge>
-                <WhiteBadge>투어/입장권</WhiteBadge>
-            </Container>
-            <Container justify='space-between'>
-                <Total>총 {props.total_num}개</Total>
-                <Delete>전체 삭제</Delete>
-            </Container>
+        <Wrapper onClick={() => nav(`/whole-package/detail/${id}`)}>
             <Badge>전체 패키지</Badge>
             <Container justify='space-between'>
-                <Title>서유럽 4국 10일</Title>
+                <Title>{title}</Title>
                 <img src={del} />
             </Container>
-            <HashTag>
-                #시내호텔 2박 #융프라우요흐 #에펠탑 전망대 #세느강유람선
-                #베네치아 대운하투어 #런던
-            </HashTag>
+            <HashTag>{subTitle}</HashTag>
             <Container margin='4% 0%'>
                 <img src={calendar} />
-                <Text>10일</Text>
+                <Text>{duration}</Text>
                 <img src={hotel} />
                 <Text>3/4성급</Text>
             </Container>
             <Price>
-                <span className='people'>1인 </span>4,499,000 원~
+                <span className='people'>1인 </span>
+                {price} 원~
             </Price>
             <Line />
         </Wrapper>
@@ -44,32 +36,6 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0% 5%;
-`;
-
-const Total = styled.div`
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin: 5% 0%;
-`;
-
-const Delete = styled(Total)`
-    font-size: 0.75rem;
-    color: var(--gray);
-`;
-
-const TopBadge = styled.div`
-    border-radius: 19.5px;
-    font-size: 0.9rem;
-    font-weight: 400;
-    padding: 2.5% 3.5%;
-    margin-right: 5%;
-`;
-const BlackBadge = styled(TopBadge)`
-    color: white;
-    background-color: #303032;
-`;
-const WhiteBadge = styled(TopBadge)`
-    color: var(--gray);
 `;
 
 const Badge = styled.div`
@@ -121,4 +87,5 @@ const Line = styled.div`
     width: 100%;
     height: 1.5px;
     margin-top: 6%;
+    margin-bottom: 6%;
 `;

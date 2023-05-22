@@ -2,6 +2,7 @@ import styled from 'styled-components';
 const S = {};
 S.Wrapper = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     height: auto;
@@ -10,11 +11,8 @@ S.Wrapper = styled.div`
     background-color: #f5f5f5;
     border-radius: 0px 0px 10px 10px;
 `;
-S.Ul = styled.ul`
-    margin: 0% 10%;
-`;
-S.List = styled.li`
-    list-style: none;
-    margin: 10px 0%;
+S.List = styled.div`
+    margin: 2.5% 10%;
+    width: 20%;
 `;
 export { S };

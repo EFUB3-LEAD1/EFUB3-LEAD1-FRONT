@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { GetLikes } from '../../api/user';
 import { S } from './Bookmark.style';
 import NavigationBar from '../_common/NavigationBar';
 import BookmarkItem from './BookmarkItem';
+import BookmarkBar from './BookmarkBar';
 import NoResult from './NoResult';
 import arrow from '../../assets/packagelistpage/arrow_left.png';
 const Bookmark = () => {
     const nav = useNavigate();
-    const total_num = 0;
+    const [likes, setLikes] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        GetLikes()
+            .then(res => {
+                setLikes(res.tours);
+                setIsLoading(false);
+                console.log(likes);
+            })
+            .catch(err => console.log(err));
+    }, []);
     return (
         <S.Wrapper>
             <S.TopBar>
@@ -17,8 +29,23 @@ const Bookmark = () => {
                 <S.Title>찜</S.Title>
             </S.TopBar>
             <S.Line height='2px' />
-            {total_num !== 0 ? (
-                <BookmarkItem total_num={total_num} />
+            {!isLoading && likes.length > 0 && (
+                <BookmarkBar total_num={likes.length} />
+            )}
+            {likes.length !== 0 ? (
+                !isLoading &&
+                likes.map(item => {
+                    return (
+                        <BookmarkItem
+                            key={item.tourId}
+                            id={item.tourId}
+                            title={item.title}
+                            subTitle={item.subTitle}
+                            price={item.price}
+                            duration={item.tourPlan.duration}
+                        />
+                    );
+                })
             ) : (
                 <NoResult />
             )}
