@@ -37,7 +37,7 @@ const PackageItem = ({
                 <S.Explanation>{explanation}</S.Explanation>
                 <S.Price>
                     <div>{price} 원~</div>
-                    <S.OriginalPrice>{originalPrice} 원</S.OriginalPrice>
+                    <S.OriginalPrice>{price} 원</S.OriginalPrice>
                 </S.Price>
             </S.Info>
         </S.Wrapper>

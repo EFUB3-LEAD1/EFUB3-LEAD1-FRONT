@@ -39,7 +39,13 @@ const PackageList = () => {
                     value={userInput}
                     onChange={saveInput}
                 />
-                <img src={search} width={25} />
+                <img
+                    src={search}
+                    width={25}
+                    onClick={() =>
+                        nav('/search/result', { state: { value: userInput } })
+                    }
+                />
             </S.SearchContainer>
             <S.SearchBtn
                 onClick={() =>
@@ -60,7 +66,6 @@ const PackageList = () => {
                                 hashtag={item.subTitle}
                                 explanation={item.contents}
                                 price={item.price}
-                                originalPrice={'4,999,000'}
                                 deal={item.category}
                             />
                         );
