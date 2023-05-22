@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import no_result from '../../assets/searchresultpage/no_result.svg';
 
 const NoResult = () => {
-    const [isLogIn, setIsLogin] = useState(true);
+    const nav = useNavigate();
+    const token = localStorage.getItem('token');
+    const [isLogIn, setIsLogin] = useState(!!token);
     return (
         <Wrapper>
             <img src={no_result} width='20%' />
@@ -13,7 +16,9 @@ const NoResult = () => {
                     ? '마음에 드는 상품을 찜해보세요!'
                     : '로그인 후, 마음에 드는 상품을 찜해보세요!'}
             </SmallText>
-            {!isLogIn && <LoginBtn>로그인 하기</LoginBtn>}
+            {!isLogIn && (
+                <LoginBtn onClick={() => nav('/login')}>로그인 하기</LoginBtn>
+            )}
         </Wrapper>
     );
 };

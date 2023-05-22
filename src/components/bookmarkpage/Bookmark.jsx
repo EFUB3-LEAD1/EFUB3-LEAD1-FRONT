@@ -9,16 +9,20 @@ import NoResult from './NoResult';
 import arrow from '../../assets/packagelistpage/arrow_left.png';
 const Bookmark = () => {
     const nav = useNavigate();
-    const [likes, setLikes] = useState({});
+    const [likes, setLikes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const token = localStorage.getItem('token');
+    const [isLogin, setIsLogin] = useState(!!token);
     useEffect(() => {
         GetLikes()
             .then(res => {
-                setLikes(res.tours);
+                setLikes(res);
                 setIsLoading(false);
                 console.log(likes);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+            });
     }, []);
     return (
         <S.Wrapper>
@@ -29,9 +33,7 @@ const Bookmark = () => {
                 <S.Title>찜</S.Title>
             </S.TopBar>
             <S.Line height='2px' />
-            {!isLoading && likes.length > 0 && (
-                <BookmarkBar total_num={likes.length} />
-            )}
+            {!isLoading && isLogin && <BookmarkBar total_num={likes.length} />}
             {likes.length !== 0 ? (
                 !isLoading &&
                 likes.map(item => {

@@ -22,7 +22,7 @@ const UserService = {
             },
         }),
     // 찜 목록 조회
-    getLikes: () => http.get('/hearts/hearts/'),
+    getLikes: () => http.get('/hearts'),
     // 찜 생성
     postLike: tourId => http.post('/hearts', { tourId: tourId }),
     // 찜 삭제
