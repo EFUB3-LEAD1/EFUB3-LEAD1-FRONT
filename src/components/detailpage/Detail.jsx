@@ -67,7 +67,12 @@ const Detail = () => {
                 onClick={() => nav(-1)}
             />
             <D.InfoContainer>
-                <D.InfoImage src={testimg} />
+                {currentPackage.images && (
+                    <D.InfoImage
+                        src={currentPackage.images[0].url}
+                        alt={currentPackage.images[0].imageId}
+                    />
+                )}
             </D.InfoContainer>
             <D.InfoTop>
                 <BsFillCheckCircleFill size='15' color='var(--purple2)' />
@@ -86,7 +91,13 @@ const Detail = () => {
                 <D.Title>{currentPackage.title}</D.Title>
                 <D.HashTag>{currentPackage.subTitle}</D.HashTag>
                 <D.Explanation>
-                    {currentPackage.category === 'HOT_DEAL' && '금주 핫딜'}
+                    {currentPackage.category === 'HOT_DEAL'
+                        ? '금주 핫딜'
+                        : currentPackage.category === 'BEST'
+                        ? '인기 베스트'
+                        : currentPackage.category === 'SOLD_OUT'
+                        ? '조기 완판'
+                        : null}
                 </D.Explanation>
                 <D.FlexContainer>
                     <span onClick={() => ToggleLike()}>
@@ -102,6 +113,7 @@ const Detail = () => {
                         <span>{`${num}개 후기`}</span>
                     </div>
                 </D.FlexContainer>
+                <div className='content'>{currentPackage.contents}</div>
                 {currentPackage.tourSpot && (
                     <D.Nation>
                         <span className='nation'>
