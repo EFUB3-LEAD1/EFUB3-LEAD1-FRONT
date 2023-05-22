@@ -7,6 +7,9 @@ M.Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (min-width: 576px) {
+        width: 390px;
+    }
 `;
 M.TopBar = styled.div`
     position: absolute;
@@ -19,6 +22,9 @@ M.TopBar = styled.div`
     font-weight: 700;
     svg {
         margin: 0 15px;
+    }
+    @media (min-width: 576px) {
+        width: 390px;
     }
 `;
 M.Profile = styled.div`
@@ -34,9 +40,14 @@ M.Name = styled.div`
     font-size: 1.3rem;
     font-weight: 600;
     svg {
-        position: absolute;
-        margin: 3px 0 0 60px;
+        margin: 3px 0 0 5px;
     }
+`;
+M.Logout = styled.div`
+    font-size: 0.9rem;
+    text-decoration: underline;
+    color: var(--gray);
+    margin-bottom: 20px;
 `;
 M.GrayDiv = styled.div`
     width: 80%;

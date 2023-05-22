@@ -5,6 +5,8 @@ import { L } from './Login.style';
 import logo from '../../assets/mainpage/logo.png';
 import { BsChevronRight } from 'react-icons/bs';
 
+import { RequestLogin } from '../../api/user';
+
 const Login = () => {
     const nav = useNavigate();
     const [inputId, setInputId] = useState('');
@@ -17,7 +19,15 @@ const Login = () => {
     const OnSubmit = e => {
         e.preventDefault();
         if (isFilled) {
-            nav('/mypage');
+            RequestLogin(inputId, inputPw)
+                .then(res => {
+                    console.log(res);
+                    localStorage.setItem('token', res.accessToken);
+                    // localStorage.setItem('refreshToken', res.refreshToken);
+                    nav('/mypage');
+                    window.location.reload();
+                })
+                .catch(err => console.log(err));
         } else {
             if (!inputId && !inputPw)
                 alert('아이디와 비밀번호를 입력해주세요.');

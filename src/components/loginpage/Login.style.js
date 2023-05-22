@@ -15,6 +15,9 @@ L.Wrapper = styled.div`
         justify-content: center;
         align-items: center;
     }
+    @media (min-width: 576px) {
+        width: 390px;
+    }
 `;
 L.Logo = styled.img`
     width: 40%;
