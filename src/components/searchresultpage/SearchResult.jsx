@@ -19,7 +19,7 @@ const SearchResult = () => {
     return (
         <S.Wrapper>
             <S.TopBar>
-                <S.BackBtn onClick={() => nav('/search')}>
+                <S.BackBtn onClick={() => nav(-1)}>
                     <img src={arrow} width={25} />
                 </S.BackBtn>
                 <S.Title>{userInput}</S.Title>

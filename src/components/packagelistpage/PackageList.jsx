@@ -1,38 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { GetAllPackages } from '../../api/tour';
 import NavigationBar from '../_common/NavigationBar';
 import PackageItem from './PackageItem';
 
 import { S } from './PackageList.style';
 import arrow from '../../assets/packagelistpage/arrow_left.png';
 import search from '../../assets/packagelistpage/search.svg';
-import thumbnail from '../../assets/packagelistpage/thumbnail.png';
 
 const PackageList = () => {
-    const pack = [
-        {
-            id: 1,
-            thumbnail: { thumbnail },
-            title: '서유럽 4국 10일',
-            hashtag:
-                '#시내호텔 2박 # 융프라우요흐 # 에펠탑 전망대 # 세느강유람선 # 베네치아 대운하투어 # 런던',
-            explanation: '단 일주일간 40만원 할인',
-            price: '4,499,000 원 ~',
-            originalPrice: '4,899,000원',
-            deal: 0,
-        },
-        {
-            id: 2,
-            thumbnail: { thumbnail },
-            title: '서유럽 4국 10일',
-            hashtag: '#시내호텔 2박 # 융프라우요흐 # 에펠탑 전망대',
-            explanation: '단 일주일간 40만원 할인',
-            price: '4,499,000 원 ~',
-            originalPrice: '4,899,000원',
-            deal: 0,
-        },
-    ];
     const nav = useNavigate();
+    const [pack, setPack] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [userInput, setUserInput] = useState('');
+    const saveInput = e => {
+        setUserInput(e.target.value);
+    };
+    useEffect(() => {
+        GetAllPackages()
+            .then(res => {
+                setPack(res.tours);
+                setIsLoading(false);
+                console.log(pack);
+            })
+            .catch(err => console.log(err));
+    }, []);
     return (
         <S.Wrapper>
             <S.TopBar>
@@ -42,26 +34,37 @@ const PackageList = () => {
                 <S.Title>전체 패키지 여행</S.Title>
             </S.TopBar>
             <S.SearchContainer>
-                <S.SearchInput placeholder='떠나고 싶은 여행지가 있나요?' />
+                <S.SearchInput
+                    placeholder='떠나고 싶은 여행지가 있나요?'
+                    value={userInput}
+                    onChange={saveInput}
+                />
                 <img src={search} width={25} />
             </S.SearchContainer>
-            <S.SearchBtn onClick={() => nav('/search')}>검색</S.SearchBtn>
+            <S.SearchBtn
+                onClick={() =>
+                    nav('/search/result', { state: { value: userInput } })
+                }
+            >
+                검색
+            </S.SearchBtn>
             <S.PackageList>
-                {pack.map(item => {
-                    console.log(item.thumbnail);
-                    return (
-                        <PackageItem
-                            id={item.id}
-                            thumbnail={item.thumbnail}
-                            title={item.title}
-                            hashtag={item.hashtag}
-                            explanation={item.explanation}
-                            price={item.price}
-                            originalPrice={item.originalPrice}
-                            deal={item.deal}
-                        />
-                    );
-                })}
+                {!isLoading &&
+                    pack.map(item => {
+                        return (
+                            <PackageItem
+                                key={item.tourId}
+                                id={item.tourId}
+                                thumbnail={item.imageUrl}
+                                title={item.title}
+                                hashtag={item.subTitle}
+                                explanation={item.contents}
+                                price={item.price}
+                                originalPrice={'4,999,000'}
+                                deal={item.category}
+                            />
+                        );
+                    })}
             </S.PackageList>
             <NavigationBar />
         </S.Wrapper>

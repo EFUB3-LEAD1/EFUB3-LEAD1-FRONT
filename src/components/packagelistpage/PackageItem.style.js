@@ -12,6 +12,7 @@ S.Thumbnail = styled.img`
     margin-left: 7.5%;
     margin-bottom: 5%;
     width: 85%;
+    border-radius: 5%;
 `;
 S.Deal = styled.img`
     position: absolute;
@@ -28,13 +29,15 @@ S.Title = styled.div`
     font-size: 1.2rem;
 `;
 S.HashTag = styled.div`
+    margin-top: 0.5%;
+    font-weight: 500;
     color: #874dcc;
 `;
 S.Explanation = styled.div`
     color: #646464;
     font-size: 0.75rem;
     font-weight: 300;
-    margin-top: 3%;
+    margin-top: 4%;
     margin-bottom: 4%;
 `;
 S.Price = styled.div`
