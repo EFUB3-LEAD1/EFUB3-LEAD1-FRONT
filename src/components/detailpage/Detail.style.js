@@ -51,6 +51,11 @@ D.Container = styled.div`
     width: 90%;
     margin-top: 20px;
     padding-bottom: 130px;
+    .content {
+        margin: 18px 0 0 8px;
+        font-size: 0.9rem;
+        word-break: keep-all;
+    }
 `;
 D.ItemNum = styled.div`
     font-size: 0.75rem;
