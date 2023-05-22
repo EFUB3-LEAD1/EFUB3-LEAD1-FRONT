@@ -1,7 +1,7 @@
 import UserService from './service/userservice';
 
 // 로그인
-export const Login = async (id, pw) => {
+export const RequestLogin = async (id, pw) => {
     try {
         const response = await UserService.requestLogin(id, pw);
         return Promise.resolve(response.data);
@@ -11,8 +11,13 @@ export const Login = async (id, pw) => {
 };
 
 // 로그아웃
-export const Logout = () => {
-    UserService.requestLogout();
+export const RequestLogout = async (token, refreshToken) => {
+    try {
+        const response = await UserService.requestLogout(token, refreshToken);
+        return Promise.resolve(response.data);
+    } catch (error) {
+        return Promise.reject(error, '로그아웃 실패');
+    }
 };
 
 // 프로필 조회

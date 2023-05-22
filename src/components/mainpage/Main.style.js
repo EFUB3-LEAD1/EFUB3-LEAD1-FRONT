@@ -12,6 +12,9 @@ S.SplashContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (min-width: 576px) {
+        width: 390px;
+    }
 `;
 S.SplashLogo = styled.img`
     width: 40%;
