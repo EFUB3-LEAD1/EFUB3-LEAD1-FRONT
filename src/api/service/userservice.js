@@ -26,7 +26,7 @@ const UserService = {
     // 찜 생성
     postLike: tourId => http.post('/hearts', { tourId: tourId }),
     // 찜 삭제
-    deleteLike: tourId => http.delete('/hearts', { tourId: tourId }),
+    deleteLike: tourId => http.delete(`/hearts?tourId=${tourId}`),
 };
 
 export default UserService;

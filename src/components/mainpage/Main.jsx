@@ -22,9 +22,16 @@ const Main = () => {
     const nav = useNavigate();
     const [isSplash, setIsSplash] = useState(true);
     useEffect(() => {
-        setTimeout(function () {
+        window.scrollTo(0, 0);
+        if (sessionStorage.getItem('visited') !== 'true') {
+            setIsSplash(true);
+            setTimeout(function () {
+                setIsSplash(false);
+                sessionStorage.setItem('visited', 'true');
+            }, 1500);
+        } else {
             setIsSplash(false);
-        }, 1500);
+        }
     }, []);
     return (
         <S.Wrapper>

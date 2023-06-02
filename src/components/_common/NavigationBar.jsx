@@ -9,7 +9,7 @@ const NavigationBar = () => {
     const nav = useNavigate();
     return (
         <Wrapper>
-            <BtnRect>
+            <BtnRect onClick={() => nav('/')}>
                 <BiMenu size='38' />
                 <div className='text'>메뉴</div>
             </BtnRect>

@@ -24,12 +24,12 @@ import { Like, UnLike } from '../../api/user';
 const Detail = () => {
     const nav = useNavigate();
     const { id } = useParams();
-    const num = Math.floor(Math.random() * 500);
+    const [num, setNum] = useState(0);
     const [currentPackage, setCurrentPackage] = useState({});
     useEffect(() => {
+        setNum(Math.floor(Math.random() * 300));
         GetPackage(id)
             .then(res => {
-                console.log(res);
                 setCurrentPackage(res);
                 setIsLiked(res.isHeart);
             })
@@ -41,14 +41,14 @@ const Detail = () => {
     const ToggleLike = () => {
         if (isLogin) {
             if (isLiked) {
-                UnLike(id)
+                UnLike(Number(id))
                     .then(res => {
                         console.log(res);
                         setIsLiked(false);
                     })
                     .catch(err => console.log(err));
             } else {
-                Like(id)
+                Like(Number(id))
                     .then(res => {
                         console.log(res);
                         setIsLiked(true);

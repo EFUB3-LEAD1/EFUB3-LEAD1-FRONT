@@ -46,6 +46,7 @@ const Login = () => {
                 />
                 <L.Input
                     placeholder='비밀번호'
+                    type='password'
                     value={inputPw}
                     onChange={e => setInputPw(e.target.value)}
                 />
