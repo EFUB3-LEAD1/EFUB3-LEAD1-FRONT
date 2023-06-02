@@ -12,7 +12,7 @@ const My = () => {
     const nav = useNavigate();
     const token = localStorage.getItem('token');
     // const refreshToken = localStorage.getItem('refreshToken');
-    const [account, setAccount] = useState('x abc@gmail.com');
+    const [account, setAccount] = useState('abc@gmail.com');
     const OnLogout = () => {
         window.localStorage.removeItem('token');
         // window.localStorage.removeItem('refreshToken');
@@ -22,7 +22,7 @@ const My = () => {
         //     .catch(err => console.log(err));
     };
     useEffect(() => {
-        GetProfile()
+        GetProfile(token)
             .then(res => {
                 console.log(res);
                 setAccount(res.account);
