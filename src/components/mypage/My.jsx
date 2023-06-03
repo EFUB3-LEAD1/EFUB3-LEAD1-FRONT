@@ -12,7 +12,7 @@ const My = () => {
     const nav = useNavigate();
     const token = localStorage.getItem('token');
     // const refreshToken = localStorage.getItem('refreshToken');
-    const [account, setAccount] = useState('abc@gmail.com');
+    const [account, setAccount] = useState('hanaclone');
     const OnLogout = () => {
         window.localStorage.removeItem('token');
         // window.localStorage.removeItem('refreshToken');
